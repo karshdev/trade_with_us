@@ -1,7 +1,13 @@
 import { NextResponse } from 'next/server';
 import { ProfileService } from '@/services/profileService';
 import { CreateProfileData } from '@/services/profileService';
-
+import { writeFile } from 'fs/promises';
+import path from 'path';
+import { existsSync, mkdir } from 'fs';
+const uploadsDir = path.join(process.cwd(), 'public', 'uploads');
+if (!existsSync(uploadsDir)) {
+  mkdir(uploadsDir, { recursive: true });
+}
 export async function POST(request: Request) {
   try {
     const formData = await request.formData();
@@ -19,13 +25,20 @@ export async function POST(request: Request) {
 
     const logo = formData.get('logo') as File;
     const banner = formData.get('banner') as File;
+    let imagePath = '';
 
     const profile = await ProfileService.createProfile(profileData);
-
+   const uniqueSuffix = `${Date.now()}-${Math.round(Math.random() * 1E9)}`;
+      const filename = `${uniqueSuffix}-${logo.name}`;
+      const filepath = path.join(uploadsDir, filename);
     // Handle file uploads if present
     if (logo) {
-      await ProfileService.updateProfileImage(profile._id, 'logo', logo.name);
-    }
+      const bytes = await logo.arrayBuffer();
+      const buffer = Buffer.from(bytes);
+       await writeFile(filepath, buffer);
+           imagePath = `/uploads/${filename}`;
+         }
+    
     if (banner) {
       await ProfileService.updateProfileImage(profile._id, 'banner', banner.name);
     }

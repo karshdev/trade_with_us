@@ -29,6 +29,7 @@ async function getProduct(id: string) {
 
 export default async function ProductPage({ params }: { params: { id: string } }) {
   const product = await getProduct(params.id);
+console.log("product",product);
 
   return (
     <div className="pb-6">
