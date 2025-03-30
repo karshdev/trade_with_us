@@ -6,6 +6,7 @@ const config: Config = {
     './src/components/**/*.{js,ts,jsx,tsx,mdx}',
     './src/app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
+  
   theme: {
     extend: {
       colors: {
@@ -35,12 +36,18 @@ const config: Config = {
           800: '#4C2F05',
           900: '#1E1202',
         },
+        'gray-3c': '#3C3C4399',
+        'black-00': '#0000000D',
+        'black-14': '#14171F',
       },
       fontFamily: {
         sans: ['var(--font-inter)'],
       },
       screens: {
         'mobile': {'max': '768px'},
+      },
+      backgroundImage: {
+        'custom-gradient': 'linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, #000000 100%)',
       },
     },
   },

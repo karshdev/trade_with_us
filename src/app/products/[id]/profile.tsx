@@ -9,11 +9,17 @@ import CertificationsPage from '@/components/products/CertificationsPage';
 
 import backIcon from "../../../../public/img/ic-left-arrow.svg";
 import shareFat from "../../../../public/img/ic-share-fat.svg";
-import whatsappIcon from "../../../../public/img/ic-whatsapp.svg";
 import icHeart from "../../../../public/img/icHeart.svg";
 import icListPlus from "../../../../public/img/icListPlus.svg";
 import ShippingDetails from '@/components/products/ShippingDetails';
 
+import icShieldCheck from "../../../../public/img/ic-shield-check.svg";
+import icPro from "../../../../public/img/ic-pro.svg";
+import icUserImg from "../../../../public/img/icUserImg.png";
+import Overview from '@/components/products/Overview';
+import About from '@/components/products/About';
+import VerificationDetails from '@/components/products/VerificationDetails';
+import ImportExportData from '@/components/products/ImportExportData';
 
 async function getProduct(id: string) {
     const res = await fetch(`http://localhost:3000/api/products/${id}`);
@@ -42,13 +48,10 @@ export default async function ProductPage({ params }: { params: { id: string } }
               className=""
             />
             </a>
-            <div className='w-5 '>
-
-            </div>
+           
           </div>
           <div>
-            <h1 className='text-base font-bold text-center'>Black Pepper</h1>
-            <p className='text-sm text-gray3c text-center'>KMG Robust</p>
+            <h1 className='text-base font-bold text-center'>KMG Robust</h1>
           </div>
           <div className='flex gap-2'>
           <a href="">
@@ -58,13 +61,7 @@ export default async function ProductPage({ params }: { params: { id: string } }
               className=""
             />
             </a>
-            <a href="">
-            <Image
-              src={whatsappIcon}
-              alt=''
-              className=""
-            />
-            </a>
+          
           </div>
       </div>
 
@@ -73,36 +70,50 @@ export default async function ProductPage({ params }: { params: { id: string } }
 
 
       {/* Product Image */}
-      <div className="relative h-64 bg-gray-100">
+      <div className="relative h-44 bg-gray-100">
         <Image
           src={product.image}
           alt={product.productName}
           fill
           className="object-cover"
         />
-        
-        <div className='absolute bottom-0 bg-custom-gradient w-full h-[72px] z-10' style={{ background: 'linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, #000000 100%)' }}>
-          <ul className='flex items-center justify-center gap-2 mt-12'>
-            <li><a href="" className='flex w-6 h-2 rounded-full bg-white'></a></li>
-            <li><a href="" className='flex w-2 h-2 rounded-full bg-white'></a></li>
-            <li><a href="" className='flex w-2 h-2 rounded-full bg-white'></a></li>
-            <li><a href="" className='flex w-2 h-2 rounded-full bg-white'></a></li>
-            <li><a href="" className='flex w-2 h-2 rounded-full bg-white'></a></li>
-            <li><a href="" className='flex w-2 h-2 rounded-full bg-white'></a></li>
-          </ul>
-          <div className='bg-black rounded-md px-4 py-2 text-base text-white absolute end-2 bottom-2'>
-            <strong>1/16</strong> Photos
-          </div>
+      </div>
+      <div className='px-4 mt-[-2.5rem] relative z-20'>
+        <div className='border-4 border-[#E8F5E8] rounded-xl w-[80px] h-[80px] '>
+        <Image
+              src={icUserImg}
+              alt=''
+              className="rounded-lg"
+            />
+
         </div>
+        <div className='flex gap-1 items-center mt-3'>
+            <h2 className='text-2xl text-black font-bold'>KMG Robust</h2>
+            <a href="">
+            <Image
+              src={icShieldCheck}
+              alt=''
+              className=""
+            />
+            </a>
+            <a href="">
+            <Image
+              src={icPro}
+              alt=''
+              className=""
+            />
+            </a>
+          </div>
+          <p className='text-sm items-center text-black/[.6] flex gap-1'>24 M Revenue <span className='flex rounded-full w-1 h-1 bg-[#D9D9D9]'></span> 1-10 Employees <span className='flex rounded-full w-1 h-1 bg-[#D9D9D9]'></span> 15 Years Old</p>
       </div>
 
-      <div>
+      <div className='mt-6'>
         <Tabs
           tabs={[
             {
-              id: 'images',
-              label: 'Images',
-              content: <ImageDetails />
+              id: 'overview',
+              label: 'Overview',
+              content: <Overview />
             },
             {
               id: 'seller',
@@ -129,19 +140,16 @@ export default async function ProductPage({ params }: { params: { id: string } }
       </div>
 
       <div className='mt-4 border-t-[12px] border-[#F7F7F7]'>
-        <SellerDetails />
+        <About />
       </div>
       <div className='mt-4 border-t-[12px] border-[#F7F7F7]'>
-        <PriceDetails />
-      </div>
-      <div className='mt-4 border-t-[12px] border-[#F7F7F7]'>
-        <ProductDetailsPage />
+        <VerificationDetails />
       </div>
       <div className='mt-4 border-t-[12px] border-[#F7F7F7]'>
         <CertificationsPage />
       </div>
       <div className='mt-4 border-t-[12px] border-[#F7F7F7]'>
-        <ShippingDetails />
+        <ImportExportData />
       </div>
 
       <div className='mt-4 border-t-[6px] border-[#F7F7F7]'>
@@ -154,20 +162,13 @@ export default async function ProductPage({ params }: { params: { id: string } }
                   alt=''
                 />
               </button>
-              <button className='rounded-xl bg-[#E8F5E8] p-2.5 cursor-pointer'>
-                <Image
-                  src={icListPlus}
-                  alt=''
-                />
-              </button>
+             
             </div>
             <div className='flex gap-2'>
               <button className='rounded-xl bg-[#E8F5E8] py-2 px-3 text-base font-bold text-[#12A150] cursor-pointer'>
                 Contact
               </button>
-              <button className='rounded-xl bg-[#12A150] py-2 px-3 text-base font-bold text-white cursor-pointer'>
-                Request Quote
-              </button>
+        
             </div>
 
           </div>
@@ -175,48 +176,7 @@ export default async function ProductPage({ params }: { params: { id: string } }
       </div>
 
 
-      {/* Product Name */}
-      {/* <div className="px-4 mt-4">
-        <h1 className="text-2xl font-bold text-gray-900">{product.productName}</h1>
-      </div> */}
-
-      {/* Product Details */}
-      {/* <div className="px-4 mt-6">
-        <Card title="Product Details">
-          <CardContent>
-            <div className="grid gap-4">
-              <div>
-                <CardLabel>Origin</CardLabel>
-                <CardValue>{product.origin}</CardValue>
-              </div>
-              <div>
-                <CardLabel>Packing Details</CardLabel>
-                <CardValue>{product.packingDetails}</CardValue>
-              </div>
-              <div>
-                <CardLabel>Forecast</CardLabel>
-                <CardValue>{product.forecast}</CardValue>
-              </div>
-              <div>
-                <CardLabel>Colour</CardLabel>
-                <CardValue>{product.colour}</CardValue>
-              </div>
-              <div>
-                <CardLabel>Cultivation Type</CardLabel>
-                <CardValue>{product.cultivationType}</CardValue>
-              </div>
-              <div>
-                <CardLabel>Moisture</CardLabel>
-                <CardValue>{product.moisture}</CardValue>
-              </div>
-              <div>
-                <CardLabel>Form and Cut</CardLabel>
-                <CardValue>{product.formAndCut}</CardValue>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
-      </div> */}
+     
     </div>
   );
 } 

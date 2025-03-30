@@ -8,6 +8,7 @@ declare global {
 }
 
 const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/trade';
+// const MONGODB_URI = process.env.MONGODB_URI || 'mongodb+srv://sharmaaakarsh120:kavD573eJR2hSb9M@cluster0.shhcpgb.mongodb.net';
 
 if (!MONGODB_URI) {
   throw new Error('Please define the MONGODB_URI environment variable inside .env');
