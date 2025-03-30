@@ -37,13 +37,6 @@ cd trade-with-us
 npm install
 ```
 
-3. Set up environment variables:
-Create a `.env.local` file in the root directory:
-```env
-MONGODB_URI=your_mongodb_connection_string
-NEXT_PUBLIC_API_URL=http://localhost:3000
-JWT_SECRET=your_jwt_secret
-```
 
 4. Run the development server:
 ```bash
